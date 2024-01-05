@@ -181,7 +181,6 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", " Kalite :"))
 
     def open_youtube(self, event):
-        # Resme tıklandığında çalışacak fonksiyon
         webbrowser.open("https://www.youtube.com/watch?v=Ds5bR72gNzc")
     
     
