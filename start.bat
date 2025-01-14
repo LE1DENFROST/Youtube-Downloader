@@ -1,7 +1,3 @@
-@echo off
-REM Türkçe karakter desteği için kodlama ayarı
-chcp 65001 >nul
-
 REM Python'un yüklü olup olmadığını kontrol et
 python --version >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 (
