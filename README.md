@@ -1,31 +1,124 @@
-### Fixes and Updates (v2025): <br>
+# 🎥 Minimalist YouTube Downloader
 
-1. **Switched from `pytube` to `yt_dlp` for enhanced stability and compatibility.** <br>
-   Transitioned to `yt_dlp` to overcome frequent issues and limitations in `pytube`. <br>
+A powerful, lightweight YouTube video and audio downloader built with PyQt6 and `yt_dlp`. This project provides a user-friendly GUI for seamless downloading of high-quality YouTube videos and audio files.
 
-2. **Updated `yt_dlp` to the 2025 version for improved performance and bug fixes.** <br>
-   Ensures better download handling and added features from the latest release. <br>
+---
 
-3. **Added a batch script to check Python and library dependencies before running the app.** <br>
-   Automatically installs missing libraries if not detected. <br>
+## 📝 Changelog
 
-4. **Implemented `pythonw` for running the application in the background (CMD window closes automatically).** <br>
-   Ensures a seamless user experience. <br>
+### Fixes and Updates (v2025):
 
-5. **Improved error handling to provide clearer messages for users.** <br>
-   Added specific error messages for URL issues, network failures, and other exceptions. <br>
+- **Switched to **`` for enhanced stability and compatibility.
+- **Batch Script**: Automatically installs missing libraries before running the app.
+- **Pythonw Integration**: Runs the application in the background for a seamless experience.
+- **Improved Error Handling**: Detailed feedback for common issues.
+- **Directory Checks**: Ensures necessary folders (`indirilen_mp3`, `indirilen_videolar`) are created.
+- **UTF-8 Support**: Proper handling of Turkish characters in file paths and UI.
+- **UI Enhancements**: Streamlined for a better user experience.
 
-6. **Added support for Turkish characters in the batch script (UTF-8 encoding).** <br>
-   Prevents encoding issues in Turkish-based systems. <br>
+---
 
-7. **Cleaned up unnecessary imports and redundant code for better maintainability.** <br>
-   Streamlined the codebase by removing unused dependencies. <br>
+## ✨ Key Features
 
-8. **Ensured directories (`indirilen_mp3`, `indirilen_videolar`) are created if missing.** <br>
-   Added checks to avoid folder-related errors during downloads. <br>
+- **Multiple Quality Options**: Download videos in 1080p, 720p, 480p, and more.
+- **Audio Downloads**: Easily convert and download audio in MP3 format.
+- **Stable & Reliable**: Built using `yt_dlp` for enhanced stability and compatibility.
+- **Custom Save Locations**: Choose where to save your downloads.
+- **Real-Time Progress Updates**: See the download progress with detailed speed and ETA feedback.
+- **Error Handling**: Provides clear and helpful error messages for common issues.
+- **Turkish Language Support**: UTF-8 encoding ensures compatibility with Turkish characters.
 
-9. **Enhanced user feedback and UI messages for a smoother experience.** <br>
-   Informative prompts are provided at each step of the process. <br>
+---
 
-10. **Improved overall download performance by leveraging optimized `yt_dlp` configurations.** <br>
-    Configured for faster and more reliable downloads. <br>
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- **Python 3.9 or higher**
+---
+
+### 💻 Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/LE1DENFROST/Youtube-Downloader.git
+   ```
+2. Navigate to the project folder:
+   ```bash
+   cd Youtube-Downloader
+   ```
+
+3. Run the application:
+   ```bash
+   start.bat
+   ```
+
+---
+
+## 🛠 Features in Detail
+
+- **Video Quality Options**:
+
+  - `1080p`, `720p`, `480p`, `Best Quality`, and `Lowest Quality` are supported.
+  - If an unsupported quality is selected, the app prompts users to choose a valid option.
+
+- **Audio Extraction**:
+
+  - Converts videos to MP3 format with a bitrate of 192kbps.
+
+- **Error Feedback**:
+
+  - User-friendly messages for issues like invalid URLs, network failures, or unsupported formats.
+
+- **Batch Script for Dependency Management**:
+
+  - Checks for missing Python libraries and installs them automatically.
+
+---
+
+## 🎨 User Interface
+
+The UI is built using **PyQt6** for a modern and intuitive experience:
+
+- **Dynamic Progress Bar**: Real-time download progress and speed.
+- **Status Updates**: Clear messages at each step of the download process.
+- **Dark Mode**: Sleek black-themed interface for comfortable usage.
+
+---
+
+## 🔧 Troubleshooting
+
+1. **Missing Libraries**: Run the following command to ensure all dependencies are installed:
+   ```bash
+   start.bat
+   ```
+2. **Invalid URL Error**: Ensure the provided URL is valid and points to a YouTube video or playlist.
+3. **No Download Button**: Check your `PyQt6` installation by running:
+   ```bash
+   pip show pyqt6
+   ```
+   
+## 🤝 Contributions
+
+Contributions are welcome! Feel free to submit issues, fork the repo, and open pull requests.
+
+---
+
+
+
+## 📜 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## 💬 Feedback
+
+Have suggestions or found a bug? Open an issue or contact me directly!
+
+---
+
+### 🎉 Happy Downloading! 🎉
+
