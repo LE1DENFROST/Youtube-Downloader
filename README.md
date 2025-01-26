@@ -8,7 +8,7 @@ A powerful, lightweight YouTube video and audio downloader built with PyQt6 and 
 
 ### Fixes and Updates (v2025):
 
-- **Switched to **`` for enhanced stability and compatibility.
+- **Switched to ** for enhanced stability and compatibility.
 - **Batch Script**: Automatically installs missing libraries before running the app.
 - **Pythonw Integration**: Runs the application in the background for a seamless experience.
 - **Improved Error Handling**: Detailed feedback for common issues.
