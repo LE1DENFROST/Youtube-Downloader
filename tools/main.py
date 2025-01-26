@@ -16,12 +16,16 @@ class VideoQuality(Enum):
     BEST = "En İyi Kalite"
     LOWEST = "En Düşük Kalite"
     AUDIO = "MP3"
+    P1080 = "1080p"
+    P720 = "720p"
+    P480 = "480p"
 
 @dataclass
 class DownloadConfig:
     url: str
     quality: VideoQuality
     save_path: Path
+
 
 class DownloadManager(QThread):
     progress = pyqtSignal(int)
@@ -53,7 +57,13 @@ class DownloadManager(QThread):
             return 'bestaudio/best'
         elif self.config.quality == VideoQuality.BEST:
             return 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'
-        else: 
+        elif self.config.quality == VideoQuality.P1080:
+            return 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]'
+        elif self.config.quality == VideoQuality.P720:
+            return 'bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]'
+        elif self.config.quality == VideoQuality.P480:
+            return 'bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480][ext=mp4]'
+        else:
             return 'worstvideo[ext=mp4]+worstaudio[ext=m4a]/worst[ext=mp4]/worst'
 
     def _get_postprocessors(self) -> list:
@@ -162,9 +172,11 @@ class MinimalistDownloaderUI(QMainWindow):
         controls_layout = QVBoxLayout(self.controls_widget)
         controls_layout.setContentsMargins(10, 10, 10, 10)
         controls_layout.setSpacing(10)
+
         url_label = QLabel("YouTube URL")
         url_label.setStyleSheet("color: white; font-size: 12pt;")
         controls_layout.addWidget(url_label)
+
         self.url_input = QLineEdit()
         self.url_input.setPlaceholderText("YouTube URL'sini yapıştırın")
         self.url_input.setStyleSheet("""
@@ -177,12 +189,15 @@ class MinimalistDownloaderUI(QMainWindow):
             }
             QLineEdit:focus {
                 border-color: yellow;
+                color: white;
             }
         """)
         controls_layout.addWidget(self.url_input)
+
         quality_label = QLabel("Video Kalitesi")
         quality_label.setStyleSheet("color: white; font-size: 12pt;")
         controls_layout.addWidget(quality_label)
+
         self.quality_combo = QComboBox()
         self.quality_combo.setStyleSheet("""
             QComboBox {
@@ -208,6 +223,7 @@ class MinimalistDownloaderUI(QMainWindow):
         for quality in VideoQuality:
             self.quality_combo.addItem(quality.value)
         controls_layout.addWidget(self.quality_combo)
+
         button_layout = QHBoxLayout()
         self.download_button = QPushButton("İndir")
         self.download_button.setStyleSheet("""
@@ -231,6 +247,7 @@ class MinimalistDownloaderUI(QMainWindow):
         """)
         self.download_button.clicked.connect(self.start_download)
         button_layout.addWidget(self.download_button)
+
         self.cancel_button = QPushButton("İptal")
         self.cancel_button.setEnabled(False)
         self.cancel_button.setStyleSheet("""
@@ -261,15 +278,22 @@ class MinimalistDownloaderUI(QMainWindow):
         if not url:
             QMessageBox.warning(self, "Hata", "Lütfen bir URL girin!")
             return
+
+        selected_quality = self.quality_combo.currentText()
+        if selected_quality not in [q.value for q in VideoQuality]:
+            QMessageBox.warning(self, "Hata", "Geçerli bir kalite seçin (1080p, 720p, 480p veya diğerleri)!")
+            return
+
         save_path = QFileDialog.getExistingDirectory(
             self, "İndirme Konumu Seç", 
             str(Path.home() / "Downloads")
         )
         if not save_path:
             return
+
         config = DownloadConfig(
             url=url,
-            quality=VideoQuality(self.quality_combo.currentText()),
+            quality=VideoQuality(selected_quality),
             save_path=Path(save_path)
         )
         self.download_manager = DownloadManager(config)
